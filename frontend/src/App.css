@@ -1,0 +1,49 @@
+/* Contenedor principal */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Área donde están los elementos base */
+.items-container {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+}
+
+/* Área donde están los contenedores */
+.droppable-area {
+  display: flex;
+  gap: 20px;
+}
+
+/* Elementos arrastrables */
+.draggable-item {
+  padding: 10px;
+  border: 1px solid black;
+  background-color: lightgray;
+  cursor: grab;
+  border-radius: 5px;
+}
+
+/* Contenedores */
+.droppable-container {
+  width: 150px;
+  height: 150px;
+  border: 2px dashed gray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background-color: white;
+}
+
+.dropped-item {
+  padding: 5px;
+  background-color: lightblue;
+  border-radius: 5px;
+  margin: 3px;
+}
