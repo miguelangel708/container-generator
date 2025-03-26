@@ -1,24 +1,13 @@
 import React, { useState } from "react";
 import { DndContext, useSensor, useSensors, PointerSensor } from "@dnd-kit/core";
+
+
 import DroppableContainer from "./components/DroppableContainer";
 import "./styles/styles.css";
 import Sidebar from "./components/Sidebar"; // Importamos la barra lateral
 import TopBar from "./components/TopBar"; // Importa el nuevo componente
-import JSZip from "jszip";
 
-const downloadEmptyZip = () => {
-  const zip = new JSZip();
-
-  zip.generateAsync({ type: "blob" }).then((blob) => {
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "microservices.zip";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  });
-};
+import {downloadEmptyZip} from './utils/zip'
 
 
 export default function App() {

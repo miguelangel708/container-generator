@@ -2,25 +2,10 @@ import React from "react";
 import { useDroppable } from "@dnd-kit/core";
 import "./DroppableContainer.css";
 
+import {TECH_IMAGES} from "../../configs/tech"
+
 export default function DroppableContainer({ id, items, nombre, puerto, version, red, isSelected, onContainerClick }) {
   const { setNodeRef } = useDroppable({ id });
-  const techImages = {
-    angular: require("../assets/angular.png"),
-    react: require("../assets/react.png"),
-    vue: require("../assets/vue.png"),
-    flask: require("../assets/flask.png"),
-    fastapi: require("../assets/fastapi.png"),
-    springboot: require("../assets/springboot.png"),
-    node: require("../assets/node.png"),
-    python: require("../assets/python.png"),
-    mysql: require("../assets/mysql.png"),
-    postgresql: require("../assets/postgresql.png"),
-    nginx: require("../assets/nginx.png"),
-    mongodb: require("../assets/mongodb.jpeg"),
-    Laravel: require("../assets/Laravel.png"),  // Nueva imagen
-    mariadb: require("../assets/mariadb.png"),  // Nueva imagen
-
-  };
 
   return (
     <div
@@ -42,7 +27,7 @@ export default function DroppableContainer({ id, items, nombre, puerto, version,
       {items.map((item, index) => (
         <div key={index} className="dropped-item">
           <img
-            src={techImages[item.name] || techImages["default"]}
+            src={TECH_IMAGES[item.name] || TECH_IMAGES["default"]}
             alt={item.name}
             className="dropped-image"
           />
