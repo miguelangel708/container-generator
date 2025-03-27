@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 
+import { useContainer } from "@/contexts/container";
 
-const Form = ({ containerId, onSave, onDelete, deleteContainer }) => {
+interface FormProps {}
+
+const Form: React.FC<FormProps> = () => {
   const [formData, setFormData] = useState({
     nombre: "",
     puerto: "",
@@ -9,21 +12,25 @@ const Form = ({ containerId, onSave, onDelete, deleteContainer }) => {
     red: "",
   });
 
-  const handleChange = (e) => {
+  const { selectedContainerId, save, remove } = useContainer();
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onSave(containerId, formData);
+    if (selectedContainerId) {
+      save(selectedContainerId, formData);
+    }
   };
 
   return (
     <div className="form-container">
-      <h3>configure container {containerId}</h3>
+      <h3>configure container {selectedContainerId}</h3>
       <form onSubmit={handleSubmit}>
         <label>
           Name:
@@ -42,7 +49,9 @@ const Form = ({ containerId, onSave, onDelete, deleteContainer }) => {
           <input type="text" name="red" value={formData.red} onChange={handleChange} required />
         </label>
         <button type="submit">Guardar</button>
-        <button type="button" onClick={onDelete}>Eliminar</button>
+        <button type="button" onClick={() => remove(selectedContainerId)}>
+          Eliminar
+        </button>
       </form>
     </div>
   );
