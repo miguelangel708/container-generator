@@ -1,4 +1,3 @@
-import React from "react";
 import { Settings, User } from "lucide-react"; // Íconos de configuración y usuario
 import logo from "../../assets/logo.png"; // Importa la imagen
 

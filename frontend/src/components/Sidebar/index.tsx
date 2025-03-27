@@ -1,38 +1,34 @@
 import React from "react";
 
-import DraggableItem from "../DraggableItem";
-import Dropdown from "../Dropdown";
-import Form from "../Form";
+import DraggableItem from "@components/DraggableItem";
+import Dropdown from "@components/Dropdown";
+import Form from "@components/Form";
 
-import { TECH_ITEMS } from "../../configs/tech";
+import { TECH_ITEMS } from "@/configs/tech";
+import { useContainer } from "@/contexts/container";
 
-const Sidebar = ({
-  selectedContainer,
-  onSave,
-  onDelete,
-  containers,
-  downloadJSON,
-  deleteContainer,
-}) => {
+interface SidebarProps {
+  downloadJSON: () => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ downloadJSON }) => {
+  const { containers, selectedContainerId } = useContainer();
   return (
     <div className="sidebar">
       {/* Sección Tecnologías */}
       <Dropdown label="Technologies">
         <div className="items-container">
-          {TECH_ITEMS.map((item) => (
-            <DraggableItem key={item.id} id={item.id} image={item.image} />
-          ))}
+          {TECH_ITEMS.map((item) => {
+            console.log(item);
+
+            return <DraggableItem key={item.id} id={item.id} image={item.image} />;
+          })}
         </div>
       </Dropdown>
 
       {/* Sección Configuración del Contenedor */}
-      <Dropdown label="Container Configuration" openOn={selectedContainer}>
-        <Form
-          containerId={selectedContainer}
-          onSave={onSave}
-          onDelete={onDelete}
-          deleteContainer={deleteContainer}
-        />
+      <Dropdown label="Container Configuration" openOn={selectedContainerId}>
+        <Form />
       </Dropdown>
 
       {/* Sección Estado de Contenedores */}

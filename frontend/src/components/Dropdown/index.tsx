@@ -2,11 +2,18 @@ import React, { useEffect } from "react";
 
 import { useBoolean } from "../../hooks/useBoolean";
 
-const Dropdown = ({
+interface DropdownProps {
+  label: string;
+  children: React.ReactNode;
+  isInitialOpen?: boolean;
+  openOn?: string | null;
+}
+
+const Dropdown: React.FC<DropdownProps> = ({
   label,
   children,
   isInitialOpen = false,
-  openOn = undefined,
+  openOn = null
 }) => {
   const [isOpen, { toggle, on }] = useBoolean(isInitialOpen);
 

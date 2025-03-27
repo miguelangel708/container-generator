@@ -1,5 +1,13 @@
 import { useMemo, useState } from 'react';
 
+
+type InitialState = boolean | (() => boolean);
+
+interface Callbacks {
+  on: () => void;
+  off: () => void;
+  toggle: () => void;
+}
 /**
  * React hook to manage boolean (on - off) states
  *
@@ -7,8 +15,9 @@ import { useMemo, useState } from 'react';
  *
  * @see Docs https://chakra-ui.com/docs/hooks/use-boolean
  */
-export function useBoolean(initialState = false) {
+export function useBoolean(initialState: InitialState = false): [boolean, Callbacks]{
   const [value, setValue] = useState(initialState);
+
   const callbacks = useMemo(
     () => ({
       on: () => setValue(true),
@@ -17,5 +26,6 @@ export function useBoolean(initialState = false) {
     }),
     []
   );
+  
   return [value, callbacks];
 }

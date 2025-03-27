@@ -1,10 +1,20 @@
-import React from "react";
 import { useDroppable } from "@dnd-kit/core";
 import "./DroppableContainer.css";
 
-import {TECH_IMAGES} from "../../configs/tech"
+import {TECH_IMAGES, TechName} from "@/configs/tech"
 
-export default function DroppableContainer({ id, items, nombre, puerto, version, red, isSelected, onContainerClick }) {
+interface DroppableContainerProps {
+  id: string;
+  items: { name: string }[];
+  nombre?: string;
+  puerto?: string;
+  version?: string;
+  red?: string;
+  isSelected: boolean;
+  onContainerClick: () => void;
+}
+
+export default function DroppableContainer({ id, items, nombre, puerto, version, red, isSelected, onContainerClick }: DroppableContainerProps) {
   const { setNodeRef } = useDroppable({ id });
 
   return (
@@ -27,7 +37,7 @@ export default function DroppableContainer({ id, items, nombre, puerto, version,
       {items.map((item, index) => (
         <div key={index} className="dropped-item">
           <img
-            src={TECH_IMAGES[item.name] || TECH_IMAGES["default"]}
+            src={TECH_IMAGES[item.name as TechName] || TECH_IMAGES["default" as TechName]}
             alt={item.name}
             className="dropped-image"
           />
