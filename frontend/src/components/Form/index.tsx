@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 
-import { useContainer } from "@/contexts/container";
+import { useContainerStore } from "@/stores/containers";
 
 interface FormProps {}
 
@@ -12,7 +12,13 @@ const Form: React.FC<FormProps> = () => {
     red: "",
   });
 
-  const { selectedContainerId, save, remove } = useContainer();
+  const selectedContainerId = useContainerStore((state) => state.selectedContainerId);
+
+  const setSelectedContainerId = useContainerStore((state) => state.setSelectedContainerId);
+  const save = useContainerStore((state) => state.save);
+  const remove = useContainerStore((state) => state.remove);
+
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -27,6 +33,12 @@ const Form: React.FC<FormProps> = () => {
       save(selectedContainerId, formData);
     }
   };
+
+  const onRemove = useCallback(() => {
+    remove(selectedContainerId);
+    setSelectedContainerId(null)
+  }
+  , [remove, selectedContainerId]);
 
   return (
     <div className="form-container">
@@ -49,7 +61,7 @@ const Form: React.FC<FormProps> = () => {
           <input type="text" name="red" value={formData.red} onChange={handleChange} required />
         </label>
         <button type="submit">Guardar</button>
-        <button type="button" onClick={() => remove(selectedContainerId)}>
+        <button type="button" onClick={onRemove}>
           Eliminar
         </button>
       </form>
