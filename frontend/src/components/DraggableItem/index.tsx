@@ -15,14 +15,8 @@ export default function DraggableItem({ id, image }: DraggableItemProps) {
   };
 
   return (
-    <img
-      ref={setNodeRef}
-      {...listeners}
-      {...attributes}
-      src={image}
-      alt={id}
-      className="draggable-item"
-      style={style}
-    />
+    <a className="draggable-item" href="#" style={style} title={id}>
+      <img ref={setNodeRef} {...listeners} {...attributes} src={image} alt={id} />
+    </a>
   );
 }
