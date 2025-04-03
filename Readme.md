@@ -25,9 +25,12 @@ npm install
 
 The project uses the following main libraries:
 
+- `vite` - Frontend build tool
 - `react` - Main framework for the user interface.
 - `@dnd-kit/core` - Drag and drop handling.
 - `jszip` - ZIP file generation.
+- `zustand` - Manage state
+- `typescript` - More readable code and typed implement
 
 To install the required dependencies, run:
 
@@ -40,10 +43,10 @@ npm install react @dnd-kit/core jszip
 To start the development server:
 
 ```bash
-npm start
+npm run dev
 ```
 
-The application will be available at `http://localhost:3000/`.
+The application will be available at `http://localhost:4173/`.
 
 ## Usage
 

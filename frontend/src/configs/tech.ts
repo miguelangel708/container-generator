@@ -12,9 +12,11 @@ export const TECH_NAMES = [
   "mysql",
   "postgresql",
   "nginx",
-  "Laravel",
+  "laravel",
   "mariadb",
-  "mongodb"
+  "mongodb",
+  "django",
+  "express"
 ] as const;
 
 // type Name = (typeof arr)[number]['name'];
@@ -27,7 +29,7 @@ function getImgUrl(uri: string) {
 
 export const TECH_IMAGES = TECH_NAMES.reduce<Record<TechName, string>>(
   (acc, name) => {
-    acc[name] = getImgUrl(`/images/tech/${name}.png`);
+    acc[name] = getImgUrl(`/images/svg/${name}.svg`);
     return acc;
   },
   {} as Record<TechName, string>,
